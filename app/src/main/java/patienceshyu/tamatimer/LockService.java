@@ -23,7 +23,11 @@ public class LockService extends Service {
     }
 
     @Override
+    public void onDestroy() { super.onDestroy(); }
+
+    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+
         final IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_USER_PRESENT);
