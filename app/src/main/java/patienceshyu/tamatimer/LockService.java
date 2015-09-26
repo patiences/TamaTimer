@@ -27,11 +27,15 @@ public class LockService extends Service {
         final IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_USER_PRESENT);
+
         final BroadcastReceiver mReceiver = new ScreenReceiver();
         registerReceiver(mReceiver, filter);
+
         return super.onStartCommand(intent, flags, startId);
     }
+
     public class LocalBinder extends Binder {
+
         LockService getService() {
             return LockService.this;
         }
