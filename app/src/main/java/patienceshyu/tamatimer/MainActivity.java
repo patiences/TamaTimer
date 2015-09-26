@@ -34,7 +34,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     private Sprite sprite;
     private ImageView spriteDisplay;
 
-    private final long startTime = 60000; // 1 hour
+    private final long startTime = 30000; // 1 hour
     private final long interval = 1000;  // 1 second
 
     @Override
@@ -55,7 +55,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
         // Countdown TextView
         countdown = (TextView) this.findViewById(R.id.timer);
-        timer = new Timer(startTime, interval, countdown, sprite);
+        timer = new Timer(startTime, interval, countdown, sprite, this);
 
         heart1Display = (ImageView) this.findViewById(R.id.heart1Display);
         heart2Display = (ImageView) this.findViewById(R.id.heart2Display);
@@ -108,15 +108,20 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             heart3 = new Heart(heart3Display);
 
         } else {
-            stopService(new Intent(getApplicationContext(), LockService.class));
-            timer.cancel();
-            timer.timerHasStarted = false;
-            startB.setText("START");
-            countdown.setText("");
             // User decides to give up
             sprite.cooked();
+            finish();
 
         }
+
+    }
+
+    public void finish() {
+        stopService(new Intent(getApplicationContext(), LockService.class));
+        timer.cancel();
+        timer.timerHasStarted = false;
+        startB.setText("START");
+        countdown.setText("");
 
     }
 
@@ -126,9 +131,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             heart1.die();
         } else if (heart2.alive) {
             heart2.die();
-        } else if (heart3.alive) {
-            heart3.die();
         } else {
+            heart3.die();
             sprite.cooked();
         }
     }

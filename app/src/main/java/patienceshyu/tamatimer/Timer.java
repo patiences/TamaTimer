@@ -1,6 +1,7 @@
 package patienceshyu.tamatimer;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -18,21 +19,24 @@ public class Timer extends CountDownTimer {
     private Sprite sprite;
     long duration;
     boolean timerHasStarted;
+    Activity activity;
 
 
-    public Timer(long duration, long interval, TextView countdown, Sprite sprite) {
+    public Timer(long duration, long interval, TextView countdown, Sprite sprite, Activity activity) {
         super(duration, interval);
         this.duration = duration;
         this.countdown = countdown;
-        //timeToEnd = duration;
         this.sprite = sprite;
         timerHasStarted = false;
+        this.activity = activity;
     }
 
     @Override
     public void onFinish() {
         // Remove the countdown
-        countdown.setText("");
+        countdown.setText("HATCHED!");
+        activity.finish();
+
 
     }
 
@@ -49,15 +53,12 @@ public class Timer extends CountDownTimer {
         // Display the countdown
         countdown.setText(timeLeft);
 
-        // Set the time left
-        //timeToEnd = millisUntilFinished;
-
         // Check to see if it's time to change the sprite
         if (!sprite.omelette) {
-            if ((millisUntilFinished <= 0.8 * 60000 && sprite.eggStatus == 1) ||       //80% done
-                    (millisUntilFinished <= 0.6 * 60000 && sprite.eggStatus == 2) ||   //60% done
-                    (millisUntilFinished <= 0.4 * 60000 && sprite.eggStatus == 3) ||   //40% done
-                    (millisUntilFinished <= 0.2 * 60000 && sprite.eggStatus == 4)) {   //20% done
+            if (((millisUntilFinished <= 0.8 * duration) && sprite.eggStatus == 1) ||       //80% done
+                    ((millisUntilFinished <= 0.6 * duration) && sprite.eggStatus == 2) ||   //60% done
+                    ((millisUntilFinished <= 0.4 * duration) && sprite.eggStatus == 3) ||   //40% done
+                    ((millisUntilFinished <= 0.2 * duration) && sprite.eggStatus == 4)) {   //20% done
                 sprite.nextStatus();
             }
         }
