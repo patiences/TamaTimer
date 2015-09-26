@@ -17,6 +17,6 @@ public class Heart {
 
     public void die() {
         alive = false;
-        heartDisplay.setColorFilter(0x000000);
+        heartDisplay.setImageResource(R.mipmap.ic_clock);
     }
 }

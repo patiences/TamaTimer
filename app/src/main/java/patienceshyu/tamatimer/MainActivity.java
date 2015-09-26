@@ -51,13 +51,13 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         countdown = (TextView) this.findViewById(R.id.timer);
         timer = new Timer(startTime, interval, countdown);
 
-
-        heart1 = new Heart(heart1Display);
-        heart2 = new Heart(heart2Display);
-        heart3 = new Heart(heart3Display);
         heart1Display = (ImageView) this.findViewById(R.id.heart1Display);
         heart2Display = (ImageView) this.findViewById(R.id.heart2Display);
         heart3Display = (ImageView) this.findViewById(R.id.heart3Display);
+        heart1 = new Heart(heart1Display);
+        heart2 = new Heart(heart2Display);
+        heart3 = new Heart(heart3Display);
+
 
         omelette = false;
 
