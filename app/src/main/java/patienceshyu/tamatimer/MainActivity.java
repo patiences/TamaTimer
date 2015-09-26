@@ -121,7 +121,11 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         timer.cancel();
         timer.timerHasStarted = false;
         startB.setText("START");
-        countdown.setText("PAWNED");
+        if(!sprite.omelette) {
+            countdown.setText("HATCHED");
+        } else {
+            countdown.setText("PWNED");
+        }
 
     }
 

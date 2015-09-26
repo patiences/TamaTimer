@@ -8,7 +8,7 @@ import android.widget.ImageView;
 public class Sprite {
 
     boolean omelette;
-    int eggStatus;
+    static int eggStatus;
     ImageView spriteDisplay;
 
     int image1 = R.mipmap.ic_start;
@@ -31,6 +31,7 @@ public class Sprite {
         // Set image to omelette
         omelette = true;
         spriteDisplay.setImageResource(cookedImage);
+
     }
 
     public void nextStatus() {
