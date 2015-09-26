@@ -1,5 +1,7 @@
 package patienceshyu.tamatimer;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.CountDownTimer;
 import android.widget.TextView;
 import java.util.concurrent.TimeUnit;
@@ -31,6 +33,7 @@ public class Timer extends CountDownTimer {
 
     }
 
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     @Override
     public void onTick(long millisUntilFinished) {
 

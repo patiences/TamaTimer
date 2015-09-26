@@ -11,13 +11,13 @@ public class Sprite {
     int eggStatus;
     ImageView spriteDisplay;
 
-    int image1 = R.mipmap.ic_egg;
-    int image2 = R.mipmap.ic_launcher;
-    int image3 = R.mipmap.ic_clock;
-    int image4 = R.mipmap.ic_launcher;
-    int image5 = R.mipmap.ic_heart;
+    int image1 = R.mipmap.ic_start;
+    int image2 = R.mipmap.ic_stage2;
+    int image3 = R.mipmap.ic_stage3;
+    int image4 = R.mipmap.ic_stage4;
+    int image5 = R.mipmap.ic_stage5;
 
-    int cookedImage = R.mipmap.ic_launcher;
+    int cookedImage = R.mipmap.ic_cooked;
 
     public Sprite(ImageView spriteDisplay) {
 

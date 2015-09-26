@@ -30,7 +30,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     private ImageView heart2Display;
     private ImageView heart3Display;
 
-    private boolean omelette;
+    private boolean omelette;//lol
 
     private Sprite sprite;
     private ImageView spriteDisplay;
