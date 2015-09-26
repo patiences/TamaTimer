@@ -92,6 +92,30 @@
         android:gravity="center_horizontal"
         android:textSize="56dip"
         android:fontFamily="sans-serif" />
+=======
+        android:fontFamily="sans-serif"
+        />
+
+
+    <ImageView
+        android:id="@+id/heart1Display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <ImageView
+        android:id="@+id/heart2Display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <ImageView
+        android:id="@+id/heart3Display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+>>>>>>> patiences/master
 
 
     <Button
@@ -102,7 +126,7 @@
         android:text="@string/button_start"
         android:padding="0dp"
         android:layout_marginTop="24dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="10dp"
         android:textSize="16dip"
         android:fontFamily="sans-serif"
         android:shadowColor="#a34e24"
