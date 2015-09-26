@@ -37,7 +37,9 @@ public class Timer extends CountDownTimer {
                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
 
         // Display the countdown
-        text.setText(timeLeft);
+        countdown.setText(timeLeft);
+
+
 
 
 
