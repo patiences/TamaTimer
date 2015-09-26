@@ -10,7 +10,7 @@ public class Heart {
     boolean alive;
     ImageView heartDisplay;
     int redHeart = R.mipmap.ic_heart;
-    int deadHeart = R.mipmap.ic_clock;
+    int deadHeart = R.mipmap.ic_deadheart;
 
     public Heart(ImageView heartDisplay) {
         alive = true;

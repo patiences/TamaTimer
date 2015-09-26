@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     private ImageView heart2Display;
     private ImageView heart3Display;
 
-    private boolean omelette;
+    private boolean omelette;//lol
 
     private Sprite sprite;
     private ImageView spriteDisplay;
@@ -101,6 +101,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             startB.setText("I Want To Give Up!");
 
             // Make a sprite
+            spriteDisplay = (ImageView) this.findViewById(R.id.sprite);
             sprite = new Sprite(spriteDisplay);
 
             heart1 = new Heart(heart1Display);
