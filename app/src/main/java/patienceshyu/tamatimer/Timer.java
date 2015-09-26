@@ -1,11 +1,8 @@
 package patienceshyu.tamatimer;
 
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.widget.TextView;
-
 import java.util.concurrent.TimeUnit;
-import patienceshyu.tamatimer.MainActivity;
 
 /**
  * Created by Patience on 15-09-25.
@@ -29,9 +26,9 @@ public class Timer extends CountDownTimer {
 
     @Override
     public void onFinish() {
-
         // Remove the countdown
         countdown.setText("");
+
     }
 
     @Override
@@ -41,7 +38,7 @@ public class Timer extends CountDownTimer {
         String timeLeft = String.format("%d : %02d",
                 TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
                 TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
-                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
 
         // Display the countdown
         countdown.setText(timeLeft);
@@ -50,15 +47,14 @@ public class Timer extends CountDownTimer {
         timeToEnd = millisUntilFinished;
 
         // Check to see if it's time to change the sprite
-        if ((timeToEnd <= 0.8 * duration && sprite.eggStatus == 1) ||   //80% done
-           (timeToEnd <= 0.6 * duration && sprite.eggStatus == 2) ||   //60% done
-           (timeToEnd <= 0.4 * duration && sprite.eggStatus == 3) ||   //40% done
-           (timeToEnd <= 0.2 * duration && sprite.eggStatus == 4)) {   //20% done
-            sprite.nextStatus();
+        if (!sprite.omelette) {
+            if ((timeToEnd <= 0.8 * duration && sprite.eggStatus == 1) ||   //80% done
+                    (timeToEnd <= 0.6 * duration && sprite.eggStatus == 2) ||   //60% done
+                    (timeToEnd <= 0.4 * duration && sprite.eggStatus == 3) ||   //40% done
+                    (timeToEnd <= 0.2 * duration && sprite.eggStatus == 4)) {   //20% done
+                sprite.nextStatus();
+            }
         }
-
-
-
 
 
     }

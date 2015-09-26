@@ -11,11 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 
 public class MainActivity extends ActionBarActivity implements OnClickListener {
 
@@ -101,11 +99,13 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             startB.setText("I Want To Give Up!");
 
             // Make a sprite
+            spriteDisplay = (ImageView) this.findViewById(R.id.sprite);
             sprite = new Sprite(spriteDisplay);
 
             heart1 = new Heart(heart1Display);
             heart2 = new Heart(heart2Display);
             heart3 = new Heart(heart3Display);
+
         } else {
             stopService(new Intent(getApplicationContext(), LockService.class));
             timer.cancel();
@@ -114,6 +114,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             countdown.setText("");
             // User decides to give up
             sprite.cooked();
+
         }
 
     }
@@ -130,6 +131,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             sprite.cooked();
         }
     }
+
+
 
 
     BroadcastReceiver broadcastReceiver =  new BroadcastReceiver() {

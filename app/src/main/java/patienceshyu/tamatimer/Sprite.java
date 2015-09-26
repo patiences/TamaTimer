@@ -7,6 +7,7 @@ import android.widget.ImageView;
  */
 public class Sprite {
 
+    boolean omelette = false;
     int eggStatus;
     ImageView spriteDisplay;
 
@@ -27,6 +28,7 @@ public class Sprite {
 
     public void cooked() {
         // Set image to omelette
+        omelette = true;
         spriteDisplay.setImageResource(cookedImage);
     }
 
