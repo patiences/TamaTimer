@@ -37,7 +37,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     private Sprite sprite;
     private ImageView spriteDisplay;
 
-    private final long startTime = 60000; // 1 hour
+    private final long startTime = 30000; // 1 hour
     private final long interval = 1000;  // 1 second
 
     @Override
@@ -127,7 +127,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             heart2.die();
         } else if (heart3.alive) {
             heart3.die();
-        } else {
             sprite.cooked();
         }
     }

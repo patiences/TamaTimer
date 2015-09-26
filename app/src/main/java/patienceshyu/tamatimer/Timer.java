@@ -33,7 +33,7 @@ public class Timer extends CountDownTimer {
     public void onFinish() {
 
         // Remove the countdown
-        countdown.setText("");
+        countdown.setText("finish");
     }
 
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
@@ -59,6 +59,8 @@ public class Timer extends CountDownTimer {
            (timeToEnd <= 0.2 * duration && sprite.eggStatus == 4)) {   //20% done
             sprite.nextStatus();
         }
+
+
 
 
 
