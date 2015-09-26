@@ -51,7 +51,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         startB.setOnClickListener(this);
 
         // Make a sprite
-        spriteDisplay = (ImageView) this.findViewById(R.id.sprite); // 1st image
+        spriteDisplay = (ImageView) this.findViewById(R.id.sprite);
         sprite = new Sprite(spriteDisplay);
 
         // Countdown TextView
@@ -90,21 +90,23 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     }
 
     @Override
-    public void onClick(View v)
-    {
-        if (!timerHasStarted)
-        {
+    public void onClick(View v) {
+
+        if (!timerHasStarted) {
             startService(new Intent(getApplicationContext(), LockService.class));
             timer.start();
             timerHasStarted = true;
+
+            // Set Button
             startB.setText("I Want To Give Up!");
+
+            // Make a sprite
             sprite = new Sprite(spriteDisplay);
+
             heart1 = new Heart(heart1Display);
             heart2 = new Heart(heart2Display);
             heart3 = new Heart(heart3Display);
-        }
-        else
-        {
+        } else {
             stopService(new Intent(getApplicationContext(), LockService.class));
             timer.cancel();
             timerHasStarted = false;

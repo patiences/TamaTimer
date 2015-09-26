@@ -19,6 +19,7 @@ public class Sprite {
     int cookedImage = R.mipmap.ic_launcher;
 
     public Sprite(ImageView spriteDisplay) {
+
         eggStatus = 1;
         this.spriteDisplay = spriteDisplay;
         spriteDisplay.setImageResource(image1);
@@ -27,7 +28,6 @@ public class Sprite {
     public void cooked() {
         // Set image to omelette
         spriteDisplay.setImageResource(cookedImage);
-
     }
 
     public void nextStatus() {
