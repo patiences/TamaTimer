@@ -1,13 +1,19 @@
 package patienceshyu.tamatimer;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -16,13 +22,24 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     private Timer timer;
     private boolean timerHasStarted = false;
     private Button startB;
-    private TextView text;
+    private TextView countdown;
+
+    private Heart heart1;
+    private Heart heart2;
+    private Heart heart3;
+
+    private ImageView heart1Display;
+    private ImageView heart2Display;
+    private ImageView heart3Display;
+
+    private boolean omelette;
 
     private final long startTime = 3600000; // 1 hour
     private final long interval = 1000;  // 1 second
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -31,11 +48,23 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         startB.setOnClickListener(this);
 
         // Countdown TextView
-        text = (TextView) this.findViewById(R.id.timer);
+        countdown = (TextView) this.findViewById(R.id.timer);
+        timer = new Timer(startTime, interval, countdown);
 
-        timer = new Timer(startTime, interval, text);
 
-        //startService(new Intent(getApplicationContext(), LockService.class));
+        heart1 = new Heart(heart1Display);
+        heart2 = new Heart(heart2Display);
+        heart3 = new Heart(heart3Display);
+        heart1Display = (ImageView) this.findViewById(R.id.heart1Display);
+        heart2Display = (ImageView) this.findViewById(R.id.heart2Display);
+        heart3Display = (ImageView) this.findViewById(R.id.heart3Display);
+
+        omelette = false;
+
+        startService(new Intent(getApplicationContext(), LockService.class));
+
+        registerReceiver(broadcastReceiver, new IntentFilter("screenActivityBroadcast"));
+
     }
 
 
@@ -76,11 +105,47 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             timer.cancel();
             timerHasStarted = false;
             startB.setText("START");
-            text.setText("");
+            countdown.setText("");
+            // User decides to give up
+            omelette = true;
         }
 
 
     }
+
+    public void killAHeart() {
+
+        if (heart1.alive) {
+            heart1.die();
+        } else if (heart2.alive) {
+            heart2.die();
+        } else if (heart3.alive) {
+            heart3.die();
+        } else {
+            omelette = true;
+        }
+    }
+
+
+    BroadcastReceiver broadcastReceiver =  new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            Bundle b = intent.getExtras();
+
+            int message = b.getInt("message");
+
+            if (message == 1) {
+
+                Log.e("test", "activity knows userpresent");
+
+                // Lose a heart
+                killAHeart();
+            }
+
+            Log.e("newmessage", "" + message);
+        }
+    };
 
 
 }
