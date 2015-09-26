@@ -34,7 +34,10 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
     private boolean omelette;
 
-    private final long startTime = 3600000; // 1 hour
+    private Sprite sprite;
+    private ImageView spriteDisplay;
+
+    private final long startTime = 60000; // 1 hour
     private final long interval = 1000;  // 1 second
 
     @Override
@@ -47,21 +50,17 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         startB = (Button) this.findViewById(R.id.StartButton);
         startB.setOnClickListener(this);
 
+        // Make a sprite
+        spriteDisplay = (ImageView) this.findViewById(R.id.sprite);
+        sprite = new Sprite(spriteDisplay);
+
         // Countdown TextView
         countdown = (TextView) this.findViewById(R.id.timer);
-        timer = new Timer(startTime, interval, countdown);
+        timer = new Timer(startTime, interval, countdown, sprite);
 
-
-        heart1 = new Heart(heart1Display);
-        heart2 = new Heart(heart2Display);
-        heart3 = new Heart(heart3Display);
         heart1Display = (ImageView) this.findViewById(R.id.heart1Display);
         heart2Display = (ImageView) this.findViewById(R.id.heart2Display);
         heart3Display = (ImageView) this.findViewById(R.id.heart3Display);
-
-        omelette = false;
-
-        startService(new Intent(getApplicationContext(), LockService.class));
 
         registerReceiver(broadcastReceiver, new IntentFilter("screenActivityBroadcast"));
 
@@ -91,25 +90,31 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     }
 
     @Override
-    public void onClick(View v)
-    {
-        if (!timerHasStarted)
-        {
+    public void onClick(View v) {
+
+        if (!timerHasStarted) {
+            startService(new Intent(getApplicationContext(), LockService.class));
             timer.start();
             timerHasStarted = true;
-            startB.setText("I Want To Give Up!");
-        }
-        else
-        {
 
+            // Set Button
+            startB.setText("I Want To Give Up!");
+
+            // Make a sprite
+            sprite = new Sprite(spriteDisplay);
+
+            heart1 = new Heart(heart1Display);
+            heart2 = new Heart(heart2Display);
+            heart3 = new Heart(heart3Display);
+        } else {
+            stopService(new Intent(getApplicationContext(), LockService.class));
             timer.cancel();
             timerHasStarted = false;
             startB.setText("START");
             countdown.setText("");
             // User decides to give up
-            omelette = true;
+            sprite.cooked();
         }
-
 
     }
 
@@ -122,7 +127,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         } else if (heart3.alive) {
             heart3.die();
         } else {
-            omelette = true;
+            sprite.cooked();
         }
     }
 

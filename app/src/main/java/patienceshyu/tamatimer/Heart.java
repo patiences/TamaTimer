@@ -9,14 +9,17 @@ public class Heart {
 
     boolean alive;
     ImageView heartDisplay;
+    int redHeart = R.mipmap.ic_heart;
+    int deadHeart = R.mipmap.ic_clock;
 
     public Heart(ImageView heartDisplay) {
         alive = true;
         this.heartDisplay = heartDisplay;
+        heartDisplay.setImageResource(redHeart);
     }
 
     public void die() {
         alive = false;
-        heartDisplay.setColorFilter(0x000000);
+        heartDisplay.setImageResource(deadHeart);
     }
 }
