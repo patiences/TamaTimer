@@ -131,9 +131,9 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             heart1.die();
         } else if (heart2.alive) {
             heart2.die();
-        } else {
-            heart3.die();
+        } else if (heart3.alive) {
             sprite.cooked();
+            heart3.die();
         }
     }
 

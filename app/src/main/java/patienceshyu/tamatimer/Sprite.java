@@ -43,7 +43,7 @@ public class Sprite {
         } else if (eggStatus == 3) {
             spriteDisplay.setImageResource(image4); // SET TO FOURTH IMAGE
             eggStatus++;
-        } else  {
+        } else if (eggStatus == 4) {
             spriteDisplay.setImageResource(image5); // SET TO FIFTH IMAGE
             eggStatus++;
         }
