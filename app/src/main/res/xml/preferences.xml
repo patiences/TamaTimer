@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+        <EditTextPreference
+            android:title="Set Timer"
+            android:summary="Set the timer in minutes"
+            android:key="timer"
+            android:defaultValue="1"
+        />
+
+</PreferenceScreen>

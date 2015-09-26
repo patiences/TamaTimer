@@ -4,8 +4,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Config;
 import android.util.Log;
+import android.view.Gravity;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,12 +49,21 @@ public class ScreenReceiver extends BroadcastReceiver {
 
             // User has used phone!
             wasScreenOn = true;
-            Log.e("test","userpresent");
+            Log.e("test", "userpresent");
 
             // Pass 1 to MainActivity
             i.putExtra("message", 1);
 
-            Toast.makeText(context, "You've lapsed!", Toast.LENGTH_SHORT).show();
+
+            Toast toast = Toast.makeText(context, "You should not be on your phone!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER_VERTICAL,0,0);
+            LinearLayout toastLayout = (LinearLayout) toast.getView();
+            TextView toastTV = (TextView) toastLayout.getChildAt(0);
+            toastTV.setTextSize(30);
+            toast.show();
+
+            Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+            v.vibrate(400);
 
         }
 

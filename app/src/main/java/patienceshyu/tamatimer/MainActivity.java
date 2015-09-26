@@ -7,13 +7,22 @@ import android.content.IntentFilter;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.widget.Toast;
+
 
 public class MainActivity extends ActionBarActivity implements OnClickListener {
 
@@ -34,8 +43,10 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     private Sprite sprite;
     private ImageView spriteDisplay;
 
-    private final long startTime = 30000; // 1 hour
+    private long startTime = 30000 ; // 30 seconds
     private final long interval = 1000;  // 1 second
+
+    //private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +54,10 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //showUserSettings();
+        //sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        //startTime = Long.valueOf(sharedPreferences.getString("timer", "1"));
         //timerHasStarted = false;
 
         // Start Button
@@ -69,7 +84,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.settings, menu);
         return true;
     }
 
@@ -78,14 +93,17 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()) {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            //case R.id.menu_settings:
+              //  Intent i = new Intent(this, SettingsActivity.class);
+                //startActivityForResult(i, RESULT_SETTINGS);
+                //break;
+
+
         }
 
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     @Override
@@ -122,7 +140,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         timer.timerHasStarted = false;
         startB.setText("START");
         if(!sprite.omelette) {
-            countdown.setText("HATCHED");
+            countdown.setText("Hatched!");
         } else {
             countdown.setText("PWNED");
         }
@@ -138,6 +156,13 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         } else if (heart3.alive) {
             sprite.cooked();
             heart3.die();
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "You have used your phone way too many times!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER_VERTICAL,0,0);
+            LinearLayout toastLayout = (LinearLayout) toast.getView();
+            TextView toastTV = (TextView) toastLayout.getChildAt(0);
+            toastTV.setTextSize(30);
+            toast.show();
             finish();
         }
     }
@@ -164,6 +189,36 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             Log.e("newmessage", "" + message);
         }
     };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK)
+            return;
+
+    }
+
+    /*private void showUserSettings() {
+        SharedPreferences sharedPrefs = PreferenceManager
+                .getDefaultSharedPreferences(this);
+
+        StringBuilder builder = new StringBuilder();
+
+        //builder.append("\n Username: "
+        //        + sharedPrefs.getString("prefUsername", "NULL"));
+
+        //builder.append("\n Send report:"
+        //        + sharedPrefs.getBoolean("prefSendReport", false));
+
+        //builder.append("\n Sync Frequency: "
+        //        + sharedPrefs.getString("prefSyncFrequency", "NULL"));
+
+        TextView settingsTextView = (TextView) findViewById(R.id.textUserSettings);
+
+        settingsTextView.setText(builder.toString());
+    }
+    */
+
+
 
 
 }
