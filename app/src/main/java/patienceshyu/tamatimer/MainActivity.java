@@ -35,7 +35,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
         timer = new Timer(startTime, interval, text);
 
-        //startService(new Intent(getApplicationContext(), LockService.class));
+        startService(new Intent(getApplicationContext(), LockService.class));
     }
 
 
