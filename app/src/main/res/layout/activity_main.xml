@@ -41,7 +41,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="55dp">
+        android:paddingLeft="40dp">
 
         <ImageView
             android:id="@+id/sprite"
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_heart"
                 android:layout_gravity="right"
-                android:paddingRight="45dp"
+                android:paddingRight="55dp"
                 android:paddingBottom="5dp"/>
 
             <ImageView
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_heart"
                 android:layout_gravity="right"
-                android:paddingRight="45dp"
+                android:paddingRight="55dp"
                 android:paddingBottom="5dp"/>
 
             <ImageView
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_heart"
                 android:layout_gravity="right"
-                android:paddingRight="45dp"
+                android:paddingRight="55dp"
                 android:paddingBottom="5dp"
                 />
 
