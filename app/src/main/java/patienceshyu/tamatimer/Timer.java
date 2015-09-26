@@ -12,19 +12,19 @@ import patienceshyu.tamatimer.MainActivity;
 
 public class Timer extends CountDownTimer {
 
-    TextView text;
+    TextView countdown;
 
 
-    public Timer(long startTime, long interval, TextView text) {
+    public Timer(long startTime, long interval, TextView countdown) {
         super(startTime, interval);
-        this.text = text;
+        this.countdown = countdown;
     }
 
     @Override
     public void onFinish() {
 
         // Remove the countdown
-        text.setText("");
+        countdown.setText("");
     }
 
     @Override
@@ -37,7 +37,9 @@ public class Timer extends CountDownTimer {
                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
 
         // Display the countdown
-        text.setText(timeLeft);
+        countdown.setText(timeLeft);
+
+
 
 
 
