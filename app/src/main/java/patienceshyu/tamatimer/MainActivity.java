@@ -132,8 +132,14 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         } else if (heart2.alive) {
             heart2.die();
         } else if (heart3.alive) {
+<<<<<<< Updated upstream
             sprite.cooked();
             heart3.die();
+=======
+            heart3.die();
+            sprite.cooked();
+            countdown.setText("");
+>>>>>>> Stashed changes
         }
     }
 
