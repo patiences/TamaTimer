@@ -3,6 +3,7 @@ package patienceshyu.tamatimer;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.widget.TextView;
 import java.util.concurrent.TimeUnit;
 
@@ -13,17 +14,19 @@ import java.util.concurrent.TimeUnit;
 public class Timer extends CountDownTimer {
 
     TextView countdown;
-    public long timeToEnd;
+    //public long timeToEnd;
     private Sprite sprite;
     long duration;
+    boolean timerHasStarted;
 
 
     public Timer(long duration, long interval, TextView countdown, Sprite sprite) {
         super(duration, interval);
         this.duration = duration;
         this.countdown = countdown;
-        timeToEnd = duration;
+        //timeToEnd = duration;
         this.sprite = sprite;
+        timerHasStarted = false;
     }
 
     @Override
@@ -47,17 +50,19 @@ public class Timer extends CountDownTimer {
         countdown.setText(timeLeft);
 
         // Set the time left
-        timeToEnd = millisUntilFinished;
+        //timeToEnd = millisUntilFinished;
 
         // Check to see if it's time to change the sprite
         if (!sprite.omelette) {
-            if ((timeToEnd <= 0.8 * duration && sprite.eggStatus == 1) ||   //80% done
-                    (timeToEnd <= 0.6 * duration && sprite.eggStatus == 2) ||   //60% done
-                    (timeToEnd <= 0.4 * duration && sprite.eggStatus == 3) ||   //40% done
-                    (timeToEnd <= 0.2 * duration && sprite.eggStatus == 4)) {   //20% done
+            if ((millisUntilFinished <= 0.8 * 60000 && sprite.eggStatus == 1) ||       //80% done
+                    (millisUntilFinished <= 0.6 * 60000 && sprite.eggStatus == 2) ||   //60% done
+                    (millisUntilFinished <= 0.4 * 60000 && sprite.eggStatus == 3) ||   //40% done
+                    (millisUntilFinished <= 0.2 * 60000 && sprite.eggStatus == 4)) {   //20% done
                 sprite.nextStatus();
             }
         }
+        Log.e("omelette", "true");
+
 
 
     }

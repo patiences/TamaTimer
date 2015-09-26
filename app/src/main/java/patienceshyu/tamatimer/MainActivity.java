@@ -18,7 +18,6 @@ import android.widget.TextView;
 public class MainActivity extends ActionBarActivity implements OnClickListener {
 
     private Timer timer;
-    private boolean timerHasStarted = false;
     private Button startB;
     private TextView countdown;
 
@@ -43,6 +42,8 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //timerHasStarted = false;
 
         // Start Button
         startB = (Button) this.findViewById(R.id.StartButton);
@@ -90,10 +91,10 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     @Override
     public void onClick(View v) {
 
-        if (!timerHasStarted) {
+        if (!timer.timerHasStarted) {
             startService(new Intent(getApplicationContext(), LockService.class));
             timer.start();
-            timerHasStarted = true;
+            timer.timerHasStarted = true;
 
             // Set Button
             startB.setText("I Want To Give Up!");
@@ -109,7 +110,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         } else {
             stopService(new Intent(getApplicationContext(), LockService.class));
             timer.cancel();
-            timerHasStarted = false;
+            timer.timerHasStarted = false;
             startB.setText("START");
             countdown.setText("");
             // User decides to give up
