@@ -55,7 +55,6 @@ public class Timer extends CountDownTimer {
 
         // Check to see if it's time to change the sprite
         if (!sprite.omelette) {
-<<<<<<< Updated upstream
             if (((millisUntilFinished <= 0.8 * duration) && sprite.eggStatus == 1) ||       //80% done
                     ((millisUntilFinished <= 0.6 * duration) && sprite.eggStatus == 2) ||   //60% done
                     ((millisUntilFinished <= 0.4 * duration) && sprite.eggStatus == 3) ||   //40% done
@@ -63,13 +62,6 @@ public class Timer extends CountDownTimer {
 
                 Log.e("omelette", "false");
                 Log.e("sprite", String.valueOf(sprite.eggStatus));
-
-=======
-            if ((millisUntilFinished <= 0.8 * duration && sprite.eggStatus == 1) ||       //80% done
-                    (millisUntilFinished <= 0.6 * duration && sprite.eggStatus == 2) ||   //60% done
-                    (millisUntilFinished <= 0.4 * duration && sprite.eggStatus == 3) ||   //40% done
-                    (millisUntilFinished <= 0.2 * duration && sprite.eggStatus == 4)) {   //20% done
->>>>>>> Stashed changes
                 sprite.nextStatus();
 
             }
