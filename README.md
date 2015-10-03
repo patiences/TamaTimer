@@ -5,4 +5,4 @@ Jeanie Suparman (github.com/jeaniewu) at the Vancouver Startup Week 2015 Hackath
 
 Check out http://vanstartupweek.ca/get-involved/hackathon/ for more information. 
 
-Check back soon for updates and news about publishing to Google Play! Eek!  
+Check back soon for updates and news about publishing to the Google Play Store! Eek! :-) 
