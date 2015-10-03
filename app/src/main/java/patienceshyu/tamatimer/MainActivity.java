@@ -18,7 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
@@ -233,28 +232,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             return;
 
     }
-
-    /*private void showUserSettings() {
-        SharedPreferences sharedPrefs = PreferenceManager
-                .getDefaultSharedPreferences(this);
-
-        StringBuilder builder = new StringBuilder();
-
-        //builder.append("\n Username: "
-        //        + sharedPrefs.getString("prefUsername", "NULL"));
-
-        //builder.append("\n Send report:"
-        //        + sharedPrefs.getBoolean("prefSendReport", false));
-
-        //builder.append("\n Sync Frequency: "
-        //        + sharedPrefs.getString("prefSyncFrequency", "NULL"));
-
-        TextView settingsTextView = (TextView) findViewById(R.id.textUserSettings);
-
-        settingsTextView.setText(builder.toString());
-    }
-    */
-
 
 
 
