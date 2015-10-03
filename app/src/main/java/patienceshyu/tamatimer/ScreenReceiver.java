@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.util.Config;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.LinearLayout;

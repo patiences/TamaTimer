@@ -60,13 +60,11 @@ public class Timer extends CountDownTimer {
                     ((millisUntilFinished <= 0.4 * duration) && sprite.eggStatus == 3) ||   //40% done
                     ((millisUntilFinished <= 0.2 * duration) && sprite.eggStatus == 4)) {   //20% done
 
-                Log.e("omelette", "false");
-                Log.e("sprite", String.valueOf(sprite.eggStatus));
                 sprite.nextStatus();
 
             }
         }
-        Log.e("omelette", "true");
+
     }
 
 
