@@ -48,15 +48,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
    SharedPreferences preferences;
    SharedPreferences.OnSharedPreferenceChangeListener listener;
-/*
-    SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
-        public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-            //getParent().finish();
-            startActivityForResult(new Intent(getParent(), SettingsActivity.class),1);
-        }
-    };
-
-*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,8 +157,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         } else {
             countdown.setText("PWNED");
         }
-
-
 
     }
 
