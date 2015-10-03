@@ -35,6 +35,12 @@
             android:name="ScreenReceiver" >
             </receiver>
 
+        <activity
+            android:name="patienceshyu.tamatimer.SettingsActivity"
+            android:label="Settings"
+            android:parentActivityName="patienceshyu.tamatimer.MainActivity">
+        </activity>
+
     </application>
 
 

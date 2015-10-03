@@ -18,7 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
@@ -43,10 +42,12 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     private Sprite sprite;
     private ImageView spriteDisplay;
 
-    private long startTime = 30000 ; // 30 seconds
+    //private long startTime = 60000 ; // 30 seconds
+    private static long startTime;
     private final long interval = 1000;  // 1 second
 
-    //private SharedPreferences sharedPreferences;
+   SharedPreferences preferences;
+   SharedPreferences.OnSharedPreferenceChangeListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +55,25 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //showUserSettings();
-        //sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        loadActivity();
 
-        //startTime = Long.valueOf(sharedPreferences.getString("timer", "1"));
-        //timerHasStarted = false;
+    }
+
+    public void loadActivity() {
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+
+            public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+                Log.e("startTime is", Long.toString(startTime));
+                //getParent().finish();
+                loadActivity();
+
+                Log.e("startTime is", Long.toString(startTime));
+            }
+        };
+        String startTimeString = preferences.getString("Timer", "60");
+        startTime = Long.valueOf(startTimeString);
+
 
         // Start Button
         startB = (Button) this.findViewById(R.id.StartButton);
@@ -70,14 +85,13 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
         // Countdown TextView
         countdown = (TextView) this.findViewById(R.id.timer);
-        timer = new Timer(startTime, interval, countdown, sprite, this);
+        timer = new Timer(startTime * 60000, interval, countdown, sprite, this);
 
         heart1Display = (ImageView) this.findViewById(R.id.heart1Display);
         heart2Display = (ImageView) this.findViewById(R.id.heart2Display);
         heart3Display = (ImageView) this.findViewById(R.id.heart3Display);
 
         registerReceiver(broadcastReceiver, new IntentFilter("screenActivityBroadcast"));
-
     }
 
 
@@ -93,13 +107,12 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
         switch (item.getItemId()) {
 
-            //case R.id.menu_settings:
-              //  Intent i = new Intent(this, SettingsActivity.class);
-                //startActivityForResult(i, RESULT_SETTINGS);
-                //break;
-
+            case R.id.menu_settings:
+                startActivityForResult(new Intent(this, SettingsActivity.class),1);
+                preferences.registerOnSharedPreferenceChangeListener(listener);
 
         }
 
@@ -147,6 +160,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 
     }
 
+
     public void killAHeart() {
 
         if (heart1.alive) {
@@ -167,6 +181,17 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         }
     }
 
+
+/*
+    @Override
+    public void onPause() {
+
+        super.onPause();
+
+        preferences.registerOnSharedPreferenceChangeListener(null);
+
+    }
+*/
 
 
 
@@ -196,28 +221,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             return;
 
     }
-
-    /*private void showUserSettings() {
-        SharedPreferences sharedPrefs = PreferenceManager
-                .getDefaultSharedPreferences(this);
-
-        StringBuilder builder = new StringBuilder();
-
-        //builder.append("\n Username: "
-        //        + sharedPrefs.getString("prefUsername", "NULL"));
-
-        //builder.append("\n Send report:"
-        //        + sharedPrefs.getBoolean("prefSendReport", false));
-
-        //builder.append("\n Sync Frequency: "
-        //        + sharedPrefs.getString("prefSyncFrequency", "NULL"));
-
-        TextView settingsTextView = (TextView) findViewById(R.id.textUserSettings);
-
-        settingsTextView.setText(builder.toString());
-    }
-    */
-
 
 
 
